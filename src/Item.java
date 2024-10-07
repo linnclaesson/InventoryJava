@@ -3,12 +3,14 @@ public abstract class Item {
     private int weight;
     private double value;
 
+    // Constructor
     public Item(String name, int weight, double value) {
         this.name = name;
         this.weight = weight;
         this.value = value;
     }
 
+    // Getters
     public String getName() {
         return name;
     }
@@ -19,6 +21,7 @@ public abstract class Item {
         return value;
     }
 
+    // Setters
     public void setName(String name) {
         this.name = name;
     }

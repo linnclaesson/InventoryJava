@@ -3,10 +3,12 @@ import java.util.ArrayList;
 public class Inventory {
     ArrayList<Item> items;
 
+    // Constructor
     public Inventory() {
         items = new ArrayList<>();
     }
 
+    // Methods
     public void addItem(Item item) {
         items.add(item);
         System.out.println(item.getName() + " was added to the inventory.");
