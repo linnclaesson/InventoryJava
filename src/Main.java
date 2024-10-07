@@ -20,10 +20,12 @@ public class Main {
         inventory.showItems();
 
         // use potion
-        staminaPotion.useItem();
-        defencePotion.useItem();
-        healthPotion.useItem();
+        staminaPotion.useItem(inventory);
+        defencePotion.useItem(inventory);
+        healthPotion.useItem(inventory);
 
 
+        // try show inventory
+        inventory.showItems();
     }
 }

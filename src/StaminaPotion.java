@@ -4,9 +4,12 @@ public class StaminaPotion extends Consumable {
     }
 
     @Override
-    public void useItem() {
+    public void useItem(Inventory inventory) {
         System.out.printf("Using stamina potion. Boosting stamina by %s for %s seconds.%n", potency, duration);
         addStrength(potency, duration);
+
+        // remove item from inventory after it is consumed/used
+        inventory.removeItem(this);
     }
 
     public void addStrength(int potency, int duration) {

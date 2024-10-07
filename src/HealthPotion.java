@@ -4,9 +4,12 @@ public class HealthPotion extends Consumable {
     }
 
     @Override
-    public void useItem() {
+    public void useItem(Inventory inventory) {
         System.out.printf("Using health potion. Boosting health by %s for %s seconds.%n", potency, duration);
         addHealth(potency, duration);
+
+        // remove item from inventory after it is consumed/used
+        inventory.removeItem(this);
     }
 
     public void addHealth(int potency, int duration) {

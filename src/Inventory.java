@@ -14,8 +14,9 @@ public class Inventory {
         System.out.println(item.getName() + " was added to the inventory.");
     }
 
-    public void removeItem(){
-
+    public void removeItem(Item item) {
+        items.remove(item);
+        System.out.println(item.getName() + " has been removed from the inventory.");
     }
 
     public void showItems(){

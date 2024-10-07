@@ -1,3 +1,3 @@
 public interface Usable {
-    public void useItem();
+    public void useItem(Inventory inventory);
 }

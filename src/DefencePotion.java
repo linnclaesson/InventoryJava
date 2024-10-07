@@ -4,9 +4,12 @@ public class DefencePotion extends Consumable{
     }
 
     @Override
-    public void useItem() {
+    public void useItem(Inventory inventory) {
         System.out.printf("Using defence potion. Boosting defence by %s for %s seconds.%n", potency, duration);
         addDefence(potency, duration);
+
+        // remove item from inventory after it is consumed/used
+        inventory.removeItem(this);
     }
 
     public void addDefence(int potency, int duration) {
