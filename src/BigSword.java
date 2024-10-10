@@ -1,4 +1,4 @@
-public class BigSword extends Weapon {
+public class BigSword extends Weapon implements MeeleWeapon {
     // Constructor
     public BigSword(String name, int weight, double value, int damage) {
         super(name, weight, value, damage);
@@ -17,4 +17,12 @@ public class BigSword extends Weapon {
         inventory.unequipWeapon();
     }
 
+    @Override
+    public void meeleAttack() {
+        bigSwingAttack();
+    }
+
+    public void bigSwingAttack() {
+        System.out.println("\n" + "Using " + this.getName() + " to perform a big swing attack with " + this.getDamage() + " damage!" + "\n");
+    }
 }
