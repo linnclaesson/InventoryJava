@@ -4,6 +4,10 @@ public class Main {
         // Create an inventory
         Inventory inventory = new Inventory();
 
+        // create armor
+        SturdyArmor sturdyArmor = new SturdyArmor("Heavy Plate Armor", 50, 150.0, 75, 100);
+        SturdyArmor smallSturdyArmor = new SturdyArmor("Light Plate Armor", 25, 100.0, 50, 100);
+
         // create potions
         StaminaPotion staminaPotion = new StaminaPotion("Small Stamina Potion", 30, 5, 5, 15);
         DefencePotion defencePotion = new DefencePotion("Medium Defence Potion", 40, 10, 10, 20);
@@ -21,11 +25,19 @@ public class Main {
 
         // use potion
         staminaPotion.useItem(inventory);
-        defencePotion.useItem(inventory);
-        healthPotion.useItem(inventory);
+        //defencePotion.useItem(inventory);
+        //healthPotion.useItem(inventory);
 
+        // Add armor to inventory
+        inventory.addItem(smallSturdyArmor);
+        inventory.addItem(sturdyArmor);
 
-        // try show inventory
+        // Equip armor
+        smallSturdyArmor.equipItem(inventory);
+        sturdyArmor.equipItem(inventory);
+
+        // try showing inventory
         inventory.showItems();
+
     }
 }

@@ -1,5 +1,5 @@
 public interface Equippable {
-    public void equipItem();
+    public void equipItem(Inventory inventory);
 
-    public void unequipItem();
+    public void unequipItem(Inventory inventory);
 }
