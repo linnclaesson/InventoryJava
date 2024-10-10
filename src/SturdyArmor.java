@@ -4,6 +4,7 @@ public class SturdyArmor extends Armor {
         super(name, weight, value, damageDefence, armorDurability);
     }
 
+    // Methods
     @Override
     public void equipItem(Inventory inventory) {
         System.out.println("Trying to equip Sturdy Armor: " + this.getName());

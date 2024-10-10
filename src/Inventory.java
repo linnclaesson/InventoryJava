@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Inventory {
     private ArrayList<Item> items;
     private Armor equippedArmor;
+    private Weapon equippedWeapon;
 
     // Constructor
     public Inventory() {
@@ -13,6 +14,9 @@ public class Inventory {
     // Getters
     public Armor getEquippedArmor() {
         return equippedArmor;
+    }
+    public Weapon getEquipedWeapon() {
+        return equippedWeapon;
     }
 
     // METHODS
@@ -67,6 +71,29 @@ public class Inventory {
             equippedArmor = null;
         } else {
             System.out.println("No armor is currently equipped.");
+        }
+    }
+
+    // Equip weapon
+    public void equipWeapon(Weapon weapon) {
+        if (hasItem(weapon)) {
+            if (equippedWeapon != null) {
+                unequipWeapon();
+            }
+            equippedWeapon = weapon;
+            System.out.println("Equipped weapon: " + weapon.getName());
+        } else {
+            System.out.println("Weapon not found in inventory, cannot equip.");
+        }
+    }
+
+    // Unequip weapon
+    public void unequipWeapon() {
+        if (equippedWeapon != null) {
+            System.out.println("Unequipping weapon: " + equippedWeapon.getName());
+            equippedWeapon = null;
+        } else {
+            System.out.println("No weapon is currently equipped.");
         }
     }
 }

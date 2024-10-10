@@ -12,6 +12,11 @@ public class Main {
         StaminaPotion staminaPotion = new StaminaPotion("Small Stamina Potion", 30, 5, 5, 15);
         DefencePotion defencePotion = new DefencePotion("Medium Defence Potion", 40, 10, 10, 20);
         HealthPotion healthPotion = new HealthPotion("Big Health Potion", 50, 20, 10, 30);
+
+        // create weapons
+        BigSword bigSword1 = new BigSword("Big Fury Sword", 30, 100, 20);
+        BigSword bigSword2 = new BigSword("Big Sword 2nd", 30, 100, 20);
+
         // try showItems
         inventory.showItems();
 
@@ -35,6 +40,18 @@ public class Main {
         // Equip armor
         smallSturdyArmor.equipItem(inventory);
         sturdyArmor.equipItem(inventory);
+
+        // Try equip weapon
+        bigSword1.equipItem(inventory);
+
+        // Add weapon to inventory
+        inventory.addItem(bigSword1);
+
+        // Equip weapon
+        bigSword1.equipItem(inventory);
+
+        // Try swap weapon
+        bigSword2.equipItem(inventory);
 
         // try showing inventory
         inventory.showItems();
