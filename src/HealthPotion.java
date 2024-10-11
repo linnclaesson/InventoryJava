@@ -4,15 +4,13 @@ public class HealthPotion extends Consumable {
     }
 
     @Override
-    public void useItem(Inventory inventory) {
-        System.out.println("Using health potion. Boosting health by " + potency + " points.");
-        addHealth(potency);
+    public void useItem(Player player) {
+        System.out.println("*** Using health potion ***");
+        System.out.println("Boosting health by " + potency + " points.");
+        player.increaseHealth(potency);
 
         // remove item from inventory after it is consumed/used
-        inventory.removeItem(this);
+        player.getInventory().removeItem(this);
     }
 
-    public void addHealth(int potency) {
-        System.out.println("Health increased by " + potency + " points.");
-    }
 }

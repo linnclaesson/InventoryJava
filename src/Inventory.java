@@ -9,6 +9,7 @@ public class Inventory {
     public Inventory() {
         items = new ArrayList<>();
         equippedArmor = null; // Initially, no armor should be equipped
+        equippedWeapon = null;
     }
 
     // Getters
@@ -30,6 +31,7 @@ public class Inventory {
     public void removeItem(Item item) {
         items.remove(item);
         System.out.println(item.getName() + " has been removed from the inventory.");
+        System.out.println();
     }
 
     // Show inventory items

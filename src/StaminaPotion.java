@@ -4,22 +4,25 @@ public class StaminaPotion extends Consumable {
     }
 
     @Override
-    public void useItem(Inventory inventory) {
-        System.out.printf("Using stamina potion. Boosting stamina by %s for %s seconds.%n", potency, duration);
-        addStrength(potency, duration);
+    public void useItem(Player player) {
+        System.out.println("*** Using stamina potion ***");
+        System.out.printf("Boosting strength by %s points for %s seconds.%n", potency, duration);
 
-        // remove item from inventory after it is consumed/used
-        inventory.removeItem(this);
-    }
+        // Temporarily increase player's strength
+        player.increaseStrength(potency);
 
-    public void addStrength(int potency, int duration) {
-        System.out.println("Stamina increased by " + potency + " points.");
+        // Create a new thread to handle the effect duration
+        new Thread(() -> {
+            try {
+                Thread.sleep(duration * 1000L);
+            } catch (InterruptedException e) {
+                System.out.println("Potion effect interrupted.");
+            }
+            // After duration, revert the strength back to normal
+            player.decreaseStrength(potency);
+            System.out.println("Strength boost has worn off.");
+        }).start();
 
-        try {
-            Thread.sleep(duration * 1000L); // duration is in seconds
-        } catch (InterruptedException e) {
-            System.out.println("Interrupted while applying stamina boost.");
-        }
-        System.out.println("The stamina boost has worn off.");
+        player.getInventory().removeItem(this);
     }
 }

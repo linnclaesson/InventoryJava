@@ -27,5 +27,5 @@ public abstract class Consumable extends Item implements Usable {
 
     // Methods
     @Override
-    public abstract void useItem(Inventory inventory);
+    public abstract void useItem(Player player);
 }

@@ -1,63 +1,69 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-        // Create an inventory
-        Inventory inventory = new Inventory();
+        // Ask for the player's name
+        System.out.print("Enter your player's name: ");
+        String playerName = scanner.nextLine();
 
-        // create armor
+        // Create the player
+        Player player = new Player(playerName);
+
+        // Show initial player stats
+        player.showPlayerStats();
+
+        // Create armor
         SturdyArmor sturdyArmor = new SturdyArmor("Heavy Plate Armor", 50, 150.0, 75, 100);
         SturdyArmor smallSturdyArmor = new SturdyArmor("Light Plate Armor", 25, 100.0, 50, 100);
 
-        // create potions
-        StaminaPotion staminaPotion = new StaminaPotion("Small Stamina Potion", 30, 5, 5, 15);
-        DefencePotion defencePotion = new DefencePotion("Medium Defence Potion", 40, 10, 10, 20);
-        HealthPotion healthPotion = new HealthPotion("Big Health Potion", 50, 20, 10);
+        // Create potions
+        StaminaPotion staminaPotion = new StaminaPotion("Small Stamina Potion", 5, 5, 5, 15);
+        DefencePotion defencePotion = new DefencePotion("Medium Defence Potion", 10, 10, 10, 20);
+        HealthPotion healthPotion = new HealthPotion("Big Health Potion", 15, 20, 10);
 
-        // create weapons
+        // Create weapons
         BigSword bigSword1 = new BigSword("Big Fury Sword", 30, 100, 20);
         BigSword bigSword2 = new BigSword("Big Sword 2nd", 30, 100, 20);
 
-        // try showItems
-        inventory.showItems();
+        // Add items to player's inventory
+        player.getInventory().addItem(staminaPotion);
+        player.getInventory().addItem(defencePotion);
+        player.getInventory().addItem(healthPotion);
+        player.getInventory().addItem(smallSturdyArmor);
+        player.getInventory().addItem(sturdyArmor);
+        player.getInventory().addItem(bigSword1);
 
-        // add potion to inventory
-        inventory.addItem(staminaPotion);
-        inventory.addItem(defencePotion);
-        inventory.addItem(healthPotion);
 
-        // try show inventory
-        inventory.showItems();
+        // Show the inventory
+        player.getInventory().showItems();
 
-        // use potion
-        staminaPotion.useItem(inventory);
-        //defencePotion.useItem(inventory);
-        healthPotion.useItem(inventory);
+        // Use potions
+        staminaPotion.useItem(player);
+        healthPotion.useItem(player);
+        defencePotion.useItem(player);
 
-        // Add armor to inventory
-        inventory.addItem(smallSturdyArmor);
-        inventory.addItem(sturdyArmor);
+        // Show player stats after using potions
+        player.showPlayerStats();
 
         // Equip armor
-        smallSturdyArmor.equipItem(inventory);
-        sturdyArmor.equipItem(inventory);
-
-        // Try equip weapon
-        bigSword1.equipItem(inventory);
-
-        // Add weapon to inventory
-        inventory.addItem(bigSword1);
+        smallSturdyArmor.equipItem(player.getInventory());
+        sturdyArmor.equipItem(player.getInventory());
 
         // Equip weapon
-        bigSword1.equipItem(inventory);
+        bigSword1.equipItem(player.getInventory());
 
+        // Perform a weapon attack
         bigSword1.bigSwingAttack();
 
-        // Try swap weapon
-        bigSword2.equipItem(inventory);
+        // Try to swap weapons
+        bigSword2.equipItem(player.getInventory());
 
-        inventory.removeItem(sturdyArmor);
+        // Remove an item from the inventory
+        player.getInventory().removeItem(sturdyArmor);
 
-        // try showing inventory
-        inventory.showItems();
+        // Show the updated inventory
+        player.getInventory().showItems();
     }
 }

@@ -4,22 +4,25 @@ public class DefencePotion extends Consumable{
     }
 
     @Override
-    public void useItem(Inventory inventory) {
-        System.out.printf("Using defence potion. Boosting defence by %s for %s seconds.%n", potency, duration);
-        addDefence(potency, duration);
+    public void useItem(Player player) {
+        System.out.println("*** Using defence potion ***");
+        System.out.printf("Boosting defence by %s points for %s seconds.%n", potency, duration);
 
-        // remove item from inventory after it is consumed/used
-        inventory.removeItem(this);
-    }
+        // Temporarily increase player's defence
+        player.increaseDefence(potency);
 
-    public void addDefence(int potency, int duration) {
-        System.out.println("Defence increased by " + potency + " points.");
+        // Create a new thread to handle the effect duration
+        new Thread(() -> {
+            try {
+                Thread.sleep(duration * 1000L);
+            } catch (InterruptedException e) {
+                System.out.println("Potion effect interrupted.");
+            }
+            // After duration, revert the defence back to normal
+            player.decreaseDefence(potency);
+            System.out.println("Defence boost has worn off.");
+        }).start();
 
-        try {
-            Thread.sleep(duration * 1000L); // duration is in seconds
-        } catch (InterruptedException e) {
-            System.out.println("Interrupted while applying defence boost.");
-        }
-        System.out.println("The defence boost has worn off.");
+        player.getInventory().removeItem(this);
     }
 }
